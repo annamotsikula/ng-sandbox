@@ -9,7 +9,7 @@ import { GeneralStudent, User } from '../interfaces/app.interface';
 export class ChildComponent  {
   title: string = "Feature Component"
 
-  @Input() student!: GeneralStudent
+  @Input({required: true}) student!: GeneralStudent
 
   @Output() sendInfo: EventEmitter<number> = new EventEmitter<number>()
   
