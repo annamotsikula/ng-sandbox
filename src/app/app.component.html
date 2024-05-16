@@ -11,5 +11,4 @@
 <button (click)="change()">Change Child component's title</button>
 <div class="d-flex">
   <app-child [student]="user" (sendInfo)="getInfo($event)"></app-child>
-  <app-child [student]="exStudent" (sendInfo)="getInfo($event)"></app-child>
 </div>
