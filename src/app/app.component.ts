@@ -9,6 +9,7 @@ import { BindingProperties, User } from './interfaces/app.interface';
 export class AppComponent implements OnInit {
 
   title
+  isStudent: boolean = false
 
   user: User = {
     name: 'John Doe',
