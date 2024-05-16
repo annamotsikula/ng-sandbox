@@ -5,37 +5,11 @@
   <span>{{user.email}}</span>
 </div>
 
+<div>
+  <p #paragraph>This text is default color</p>
+</div>
+<button (click)="change()">Change Child component's title</button>
 <div class="d-flex">
   <app-child [student]="user" (sendInfo)="getInfo($event)"></app-child>
   <app-child [student]="exStudent" (sendInfo)="getInfo($event)"></app-child>
 </div>
-
-
-<!-- <button (click)="getValue($event)" disabled>Click me</button> -->
-
-
-
-<!-- Property Binding -->
-
-<!-- <p>App name: {{ title }}</p>
-
-<p>Element Description: {{ element | json }}</p>
-{{ element.tag }}
-{{ element.name }} -->
-<!-- <div>
-  <select name="" id="" (change)="getSelectedValue($event)">
-    <option value="null" selected>Choose option</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </select>
-</div> -->
-
-<!-- <input type="text" [value]="element.name"> -->
-<!-- <input type="text" value="Anchor"> -->
-<!-- <input type="text" [(ngModel)]="myInputValue" >
-
-<button (click)="getInputValue()">Submit</button>
-
-<img [src]="imgSrc" alt=""> -->

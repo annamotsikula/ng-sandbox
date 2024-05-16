@@ -1,14 +1,15 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BindingProperties, User } from './interfaces/app.interface';
+import { ChildComponent } from './child/child.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-
-  title
+export class AppComponent implements OnInit, AfterViewInit {
+  @ViewChild(ChildComponent) childCompRef!: ChildComponent
+  @ViewChild('paragraph') pElem!: ElementRef<HTMLParagraphElement>;
 
   user: User = {
     name: 'John Doe',
@@ -43,8 +44,17 @@ export class AppComponent implements OnInit {
   }
 
   constructor() {
-    this.title = 'Sample text 1'
-    console.log('Component class constructor');
+    // console.log(this.childCompRef) // undefined
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.pElem);
+    
+  }
+  change() {
+    this.childCompRef.title = 'Title from parent';
+    this.pElem.nativeElement.innerText = 'This text is blue'
+    this.pElem.nativeElement.style.color = 'blue'
   }
 
   getInfo(ev: any) {
@@ -52,55 +62,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() { //OnInit Hook 
-    // this.title = 'Sample text 2'
-    console.log(this.title);
+    // console.log(this.childCompRef) // undefined 
   }
-
-  ngOnChanges() {
-    console.log('OnChanges');
-  }
-
-
-
-  // ngOnDestroy(): void {
-  //   console.log('Component Destoyed');
-  // }
-
-  // ngAfterContentChecked(): void {
-  //   console.log('After Content Checked');
-  // }
-
-  // ngAfterContentInit(): void {
-  //   console.log('After Content Init');
-  // }
-
-  // ngAfterViewChecked(): void {
-  //   console.log('After View Checked')
-
-  // }
-
-  // ngAfterViewInit(): void {
-  //   console.log('After View Init')
-  // }
-
-  // ngDoCheck(): void {
-
-  //   console.log('Do check')
-
-
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

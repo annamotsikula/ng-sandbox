@@ -7,7 +7,7 @@ import { GeneralStudent, User } from '../interfaces/app.interface';
   styleUrl: './child.component.scss'
 })
 export class ChildComponent  {
-  title: string = "Feature Component"
+  title: string = "User Profile"
 
   @Input({required: true}) student!: GeneralStudent
 
