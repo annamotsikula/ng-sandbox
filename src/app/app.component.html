@@ -19,12 +19,12 @@
             <button class="btn btn-secondary">
               <img [src]="user.image" height="100" width="100" />
             </button>
-            <!-- <span class="name mt-3">{{ user.firstName }} {{ user.lastName }}</span>
+            <span class="name mt-3">{{ user.firstName }} {{ user.lastName }}</span>
             @if(user.maidenName.length) {
                 <span class="name">{{ user.maidenName }}</span>
             } @else {
              <span >No middle name</span>
-            } -->
+            }
             <span class="name" [ngClass]="{'name': user.maidenName.length}">{{ user.maidenName.length ? user.maidenName : 'No middle name' }}</span>
             <span class="idd">&#64;{{ user.username }}</span>
             <div class="d-flex mt-2">
@@ -34,6 +34,14 @@
               <span [ngClass]="user.gender === 'female' ? 'fml' : 'ml'">{{
                 user.gender
               }}</span>
+            </div>
+            <div>
+              <h5>Eye color</h5>
+              <ng-container [ngSwitch]="user.eyeColor">
+                  <span *ngSwitchCase="0" class="">Green Eyes</span>
+                  <span *ngSwitchCase="1">Blue Eyes</span>
+                  <span *ngDefault>Brown Eyes</span>
+              </ng-container>
             </div>
             <div class="text mt-3">
               <span
@@ -54,4 +62,10 @@
         <span>No users available</span>
     }
   
+</div>
+<br>
+<br>
+<hr/>
+<div class="container pipes">
+  <app-pipes />
 </div>
