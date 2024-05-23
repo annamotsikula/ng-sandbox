@@ -1,72 +1,7 @@
-<h2 class="title" style="background-color: navajowhite">Angular App</h2>
-<img src="" alt="" />
-<!-- <button (click)="addStyles()">Click me</button> -->
-<p #par >
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci possimus
-  assumenda ut, facilis error quaerat veniam ipsa! Eveniet in autem voluptatem
-  omnis itaque, quo expedita eius quas tempore. Atque, eos?
-</p>
-<span appHighlighter>kk</span>
-<!-- <a #a [ngStyle]="{ 'background-color': user.age < 50 ? 'red' : 'blue' }"
-  >I will dissapear after click</a
-> -->
-<!-- User Details -->
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-    @for (user of users ; track user.id) {
-        <div class="card p-4 ms-2">
-          <div
-            class="image d-flex flex-column justify-content-center align-items-center"
-          >
-            <button class="btn btn-secondary">
-              <img [src]="user.image" height="100" width="100" />
-            </button>
-            <span class="name mt-3">{{ user.firstName }} {{ user.lastName }}</span>
-            @if(user.maidenName.length) {
-                <span class="name">{{ user.maidenName }}</span>
-            } @else {
-             <span >No middle name</span>
-            }
-            <span class="name" [ngClass]="{'name': user.maidenName.length}">{{ user.maidenName.length ? user.maidenName : 'No middle name' }}</span>
-            <span class="idd">&#64;{{ user.username }}</span>
-            <div class="d-flex mt-2">
-              <button class="btn1 btn-dark">Click</button>
-            </div>
-            <div class="gender mt-2">
-              <span [ngClass]="user.gender === 'female' ? 'fml' : 'ml'">{{
-                user.gender
-              }}</span>
-            </div>
-            <div>
-              <h5>Eye color</h5>
-              <ng-container [ngSwitch]="user.eyeColor">
-                  <span *ngSwitchCase="0" class="">Green Eyes</span>
-                  <span *ngSwitchCase="1">Blue Eyes</span>
-                  <span *ngDefault>Brown Eyes</span>
-              </ng-container>
-            </div>
-            <div class="text mt-3">
-              <span
-                [ngClass]="{
-                  'child baby': user.age < 18,
-                  'adult': user.age > 18 && user.age < 60,
-                  'elder': user.age > 60
-              }"
-                >Age: {{ user.age }}
-              </span>
-            </div>
-            <div class="px-2 rounded mt-4 date">
-              <span class="join">Joined May,2021</span>
-            </div>
-          </div>
-        </div>  
-    } @empty {
-        <span>No users available</span>
-    }
-  
-</div>
-<br>
-<br>
-<hr/>
-<div class="container pipes">
-  <app-pipes />
+<div class="container">
+  <app-header />
+  <div class="main-container">
+    <app-main />
+  </div>
+  <app-footer />
 </div>

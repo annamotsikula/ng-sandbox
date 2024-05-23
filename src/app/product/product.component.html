@@ -1,0 +1,33 @@
+
+@if(product) {
+    <div class="card" style="width: 18rem;">
+        <div class="stock" *ngIf="product.stock < 50">{{'Few items left'}}</div>
+        <img [src]="product.thumbnail" class="card-img-top" [alt]="'product_'+product.id">
+        <div class="card-body">
+            <h5>{{product.title}}</h5>
+            <div class="d-flex justify-content-between">
+                <span class="price">{{product.price | currency}}</span>
+                
+                <span class="category" >
+                    @switch (product.category) {
+                        @case (productCategoryEnum.SMARTPHONE) {
+                            <i class="bi bi-phone-fill"></i>
+                        }
+                        @case (productCategoryEnum.HOME_DECOR) {
+                            <i class="bi bi-house"></i>
+                        }
+                      @case (productCategoryEnum.GROCERY) {
+                        <i class="bi bi-shop"></i>
+                        }
+                      @default {
+                        {{product.category}}
+                      }
+                    }
+                </span>
+            </div>
+
+          <p class="card-text">{{product.description | truncate: 8}}</p>
+        </div>
+    </div>
+}
+

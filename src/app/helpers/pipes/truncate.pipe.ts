@@ -10,10 +10,10 @@ export class TruncatePipe implements PipeTransform {
     if (words.length > limit) {
       if(limit < 0) {
         limit *= -1;
-        return words.slice(words.length - limit).join(" ");
+        return '...' + words.slice(words.length - limit).join(" ");
       } else {
         limit += 1;
-        return words.slice(0, limit).join(" ");
+        return words.slice(0, limit).join(" ") + '...';
       }
     }
 

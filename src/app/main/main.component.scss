@@ -1,0 +1,10 @@
+.product {
+    &:last-of-type {
+        flex:auto;
+        margin-left: 3rem;
+    }
+}
+
+.products {
+    flex-flow: row wrap;
+}

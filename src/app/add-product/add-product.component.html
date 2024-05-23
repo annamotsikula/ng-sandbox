@@ -1,0 +1,34 @@
+
+<div class="add-product">
+    <div class="">
+      <label class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="newProduct.title"
+      />
+    </div>
+    <div class="">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" 
+      [(ngModel)]="newProduct.price"
+      />
+    </div>
+    
+    <div class="">
+      <label class="form-label">Category</label>
+      <select  class="form-select" [(ngModel)]="newProduct.category">
+        <option value="" disabled>--choose category</option>
+        <option value="smartphones">Smartphones</option>
+        <option value="healthcare">Healthcare</option>
+        <option value="gaming">Gaming</option>
+      </select>
+    </div>
+    <div class="">
+        <textarea [(ngModel)]="newProduct.description"></textarea>
+      </div>
+    <div class="mt-2 mb-2">
+        <button class="btn btn-primary"(click)="addProduct()">Add To List</button>
+
+    </div>
+</div>
