@@ -7,11 +7,4 @@ import { Router } from "@angular/router";
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private _router = inject(Router)
-  redirect() {
-    console.log('redirect')
-    this._router.navigate(['/home'])
-  }
-
-
 }

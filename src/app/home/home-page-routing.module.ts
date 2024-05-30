@@ -1,22 +1,40 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { ActivatedRouteSnapshot, RouterModule, Routes } from "@angular/router";
+import { AboutComponent } from "../about/about.component";
+import { CommonModule } from "@angular/common";
 import { HomeComponent } from "./home.component";
+import { ProductDashboardComponent } from "../shop/product-dashboard/product-dashboard.component";
+import { ProductDetailsComponent } from "../shop/product-details/product-details.component";
+import { SurveyComponent } from "../survey/survey.component";
 
 const routes : Routes = [  
     {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        children: [
+            {
+                path: '',
+                component: ProductDashboardComponent
+            },
+            {
+                path: 'product/:id',
+                component: ProductDetailsComponent
+            },
+            {
+                path: 'about',
+                component: AboutComponent
+            },
+            {
+                path: 'survey',
+                component: SurveyComponent
+            }
+        ]
     },
-    // {
-    //     path: 'about',
-    //     component: AboutComponent
-    // }
     
 ]
 
 @NgModule({
-    declarations: [],
-    imports: [RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
 export class HomePageRouterModule {

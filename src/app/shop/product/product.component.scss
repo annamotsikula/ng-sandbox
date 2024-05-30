@@ -18,6 +18,11 @@
     .card-body {
         min-height: 100px;
     }
+    .card-footer {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
     .price {
         padding: 2px 8px;
         background-color: #e49719;
