@@ -31,7 +31,7 @@ export class ProductService {
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
       "price": 899,
       "discountPercentage": 17.94,
-      "rating": 4.44,
+      "rating": 1.44,
       "stock": 34,
       "brand": "Apple",
       "category": "smartphones",
@@ -49,7 +49,7 @@ export class ProductService {
       "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
       "price": 1249,
       "discountPercentage": 15.46,
-      "rating": 4.09,
+      "rating": 2.09,
       "stock": 36,
       "brand": "Samsung",
       "category": "smartphones",
@@ -136,5 +136,16 @@ export class ProductService {
   getProducts() {
     return this.productList
   }
+
+  deleteItemById(id: number ) {
+    const index = this.productList.findIndex(i => i.id === id);
+
+    if(index !== -1) {
+      this.productList.splice(index, 1);
+    }
+
+
+  }
+  
 
 }
