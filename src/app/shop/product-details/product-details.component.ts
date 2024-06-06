@@ -11,12 +11,12 @@ import { Product } from '../../helpers/interfaces/product.interface';
 export class ProductDetailsComponent {
   route = inject(ActivatedRoute);
   productService = inject(ProductService);
-  product: Product | undefined
+  product: Product | undefined;
 
   ngOnInit() {
     const routeParam: string = this.route.snapshot.params['id'];
     this.product = this.productService.getProductById(Number(routeParam));
-
+    console.log(this.product)
     
     // const routeParamId = this._routeSnapshnot.params['id']
 

@@ -1,4 +1,4 @@
-<form class="row g-3" [formGroup]="surveyForm" (submit)="submitForm()">
+<form class="row g-3 w-50 m-auto" [formGroup]="surveyForm" (submit)="submitForm()">
   <div class="col-md-6">
     <label class="form-label">Email</label>
     <input type="email" class="form-control" formControlName="email" />
@@ -6,10 +6,28 @@
   <div class="col-md-6">
     <label class="form-label">Full Name</label>
     <input type="text" class="form-control" formControlName="fullName" >
+    <div class="invalid-field" *ngIf="getControlName('fullName') && getControlName('fullName')?.errors && (getControlName('fullName')?.touched || getControlName('fullName')?.dirty )">
+      <ng-container *ngIf="getControlName('fullName').errors as controlError">
+        <span class="text-danger" *ngIf="controlError?.['required']">*This field is required</span>
+        <span class="text-danger" *ngIf="controlError?.['minlength']">*Min {{controlError?.['minlength'].requiredLength}} characters required</span>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Create Password</label>
+    <input type="text" class="form-control"  formControlName="password">
+    <ng-container *ngIf="getControlName('password').errors as controlError">
+      <span class="text-danger" *ngIf="controlError?.['hasLowerCase']">*You must enter at least 1 lowercase character</span>
+      <span class="text-danger" *ngIf="controlError?.['hasUpperCase']">*You must enter at least 1 uppercase character</span>
+      <span class="text-danger" *ngIf="controlError?.['numberChar']">*You must enter at least 1 number character</span>
+      <span class="text-danger" *ngIf="controlError?.['minlength']">*Your password must be at last 8 chars long</span>
+    </ng-container>
+      <!-- {{ surveyForm.controls['password'].errors | json }} -->
+
   </div>
   <div class="col-12">
     <label class="form-label">Address</label>
-    <input type="text" class="form-control"  placeholder="1234 Main St" formControlName="address">
+    <input type="text" class="form-control" placeholder="1234 Main St" formControlName="address">
   </div>
   <div class="col-12">
     <label for="inputAddress2" class="form-label">Address 2</label>
@@ -33,6 +51,20 @@
         <input type="text" class="form-control" formControlName="zip">
       </div>
   </ng-container>
+  <ng-container>
+    <button (click)="addNewControl('contact')" class="btn btn-secondary w-25">+ Add new contact</button>
+    @if(surveyForm.controls.contact) {
+      <div class="col-12">
+        <label class="form-label">Contact</label>
+        <!-- <div class="d-flex align-items-center">
+          <input type="text" class="form-control" formControlName="contact">
+          <button class="btn btn-outline-danger ms-2" type="button" (click)="removeControl('contact')">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div> -->
+      </div>
+    }
+  </ng-container>
   <!-- End Form Group (nested) -->
   <div class="col-12">
     <div class="form-check">
@@ -47,3 +79,11 @@
   </div>
 
 </form>
+
+
+<div>
+  <h5>Settings</h5>
+  <div>
+    <button (click)="changeName()">Change name</button>
+  </div>
+</div>
