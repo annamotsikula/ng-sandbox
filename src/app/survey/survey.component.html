@@ -1,85 +1,185 @@
-<form class="row g-3 w-50 m-auto" [formGroup]="surveyForm" (submit)="submitForm()">
+<form
+  class="row g-3 w-50 m-auto"
+  [formGroup]="surveyForm"
+  (submit)="submitForm()"
+>
   <div class="col-md-6">
     <label class="form-label">Email</label>
     <input type="email" class="form-control" formControlName="email" />
   </div>
   <div class="col-md-6">
     <label class="form-label">Full Name</label>
-    <input type="text" class="form-control" formControlName="fullName" >
-    <div class="invalid-field" *ngIf="getControlName('fullName') && getControlName('fullName')?.errors && (getControlName('fullName')?.touched || getControlName('fullName')?.dirty )">
+    <input type="text" class="form-control" formControlName="fullName" />
+    <div
+      class="invalid-field"
+      *ngIf="
+        getControlName('fullName') &&
+        getControlName('fullName')?.errors &&
+        (getControlName('fullName')?.touched ||
+          getControlName('fullName')?.dirty)
+      "
+    >
       <ng-container *ngIf="getControlName('fullName').errors as controlError">
-        <span class="text-danger" *ngIf="controlError?.['required']">*This field is required</span>
-        <span class="text-danger" *ngIf="controlError?.['minlength']">*Min {{controlError?.['minlength'].requiredLength}} characters required</span>
+        <span class="text-danger" *ngIf="controlError?.['required']"
+          >*This field is required</span
+        >
+        <span class="text-danger" *ngIf="controlError?.['minlength']"
+          >*Min {{controlError?.['minlength'].requiredLength}} characters
+          required</span
+        >
       </ng-container>
     </div>
   </div>
   <div class="col-12">
     <label class="form-label">Create Password</label>
-    <input type="text" class="form-control"  formControlName="password">
+    <input type="text" class="form-control" formControlName="password" />
     <ng-container *ngIf="getControlName('password').errors as controlError">
-      <span class="text-danger" *ngIf="controlError?.['hasLowerCase']">*You must enter at least 1 lowercase character</span>
-      <span class="text-danger" *ngIf="controlError?.['hasUpperCase']">*You must enter at least 1 uppercase character</span>
-      <span class="text-danger" *ngIf="controlError?.['numberChar']">*You must enter at least 1 number character</span>
-      <span class="text-danger" *ngIf="controlError?.['minlength']">*Your password must be at last 8 chars long</span>
+      <span class="text-danger" *ngIf="controlError?.['hasLowerCase']"
+        >*You must enter at least 1 lowercase character</span
+      >
+      <span class="text-danger" *ngIf="controlError?.['hasUpperCase']"
+        >*You must enter at least 1 uppercase character</span
+      >
+      <span class="text-danger" *ngIf="controlError?.['numberChar']"
+        >*You must enter at least 1 number character</span
+      >
+      <span class="text-danger" *ngIf="controlError?.['minlength']"
+        >*Your password must be at last 8 chars long</span
+      >
     </ng-container>
-      <!-- {{ surveyForm.controls['password'].errors | json }} -->
-
+    <!-- {{ surveyForm.controls['password'].errors | json }} -->
   </div>
   <div class="col-12">
     <label class="form-label">Address</label>
-    <input type="text" class="form-control" placeholder="1234 Main St" formControlName="address">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="1234 Main St"
+      formControlName="address"
+    />
   </div>
   <div class="col-12">
     <label for="inputAddress2" class="form-label">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" formControlName="address2">
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress2"
+      placeholder="Apartment, studio, or floor"
+      formControlName="address2"
+    />
   </div>
   <!-- Start Form Group (nested) -->
   <ng-container formGroupName="addressCity">
-      <div class="col-md-6">
-        <label class="form-label">City</label>
-        <input type="text" class="form-control" formControlName="city">
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <select id="inputState" class="form-select" formControlName="state">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Zip</label>
-        <input type="text" class="form-control" formControlName="zip">
-      </div>
+    <div class="col-md-6">
+      <label class="form-label">City</label>
+      <input type="text" class="form-control" formControlName="city" />
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">State</label>
+      <select id="inputState" class="form-select" formControlName="state">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Zip</label>
+      <input type="text" class="form-control" formControlName="zip" />
+    </div>
   </ng-container>
   <ng-container>
-    <button (click)="addNewControl('contact')" class="btn btn-secondary w-25">+ Add new contact</button>
+    <button (click)="addNewControl('contact')" class="btn btn-secondary w-25">
+      + Add new contact
+    </button>
     @if(surveyForm.controls.contact) {
-      <div class="col-12">
-        <label class="form-label">Contact</label>
-        <!-- <div class="d-flex align-items-center">
-          <input type="text" class="form-control" formControlName="contact">
-          <button class="btn btn-outline-danger ms-2" type="button" (click)="removeControl('contact')">
-            <i class="bi bi-x-lg"></i>
-          </button>
-        </div> -->
+    <div class="col-12">
+      <label class="form-label">Contact</label>
+      <div class="d-flex align-items-center">
+        <input type="text" class="form-control" formControlName="contact" />
+        <button
+          class="btn btn-outline-danger ms-2"
+          type="button"
+          (click)="removeControl('contact')"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
+    </div>
     }
   </ng-container>
+  <div class="col-12">
+    <label for="">Skills</label>
+    <div class="column">
+      <!-- Start Form Array For Skills Controls -->
+      <ng-container formArrayName="skills" *ngIf="skillsArr">
+        <div
+          class="d-flex mt-2"
+          *ngFor="let sk of skillsArr.controls; let i = index"
+        >
+          <input type="text" [formControlName]="i" />
+          <button
+            class="btn btn-outline-danger ms-2"
+            type="button"
+            (click)="deleteArr(i, 'skills')"
+          >
+            <i class="bi bi-x-lg ms-2"></i>
+          </button>
+        </div>
+      </ng-container>
+      <!-- End Form Array for Skills Controls -->
+    </div>
+    <button class="btn btn-secondary w-25 mt-2 mb-2" type="button" (click)="addSkills()">
+      + Add more skills
+    </button>
+  </div>
+  <!-- Start Reuiqrements Arr -->
+  <div class="col-12">
+    <label for="">Requirements</label>
+    @if (surveyForm.controls.requirements) {
+      <ng-container formArrayName="requirements">
+        <ng-container
+          *ngFor="
+            let req of surveyForm.controls.requirements.controls;
+            let i = index
+          "
+        >
+        <div [formGroupName]="i" class=" mt-2 mb-4 d-flex">
+          <div class="column">
+            <input type="text" formControlName="addr1" class="mb-2">
+            <input type="text" formControlName="addr2">
+          </div>
+          <button (click)="deleteArr(i, 'requirements')" class="ms-2">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </ng-container>
+      <button
+        class="btn btn-outline-danger ms-2 mt-2"
+        type="button"
+        (click)="addNewRequirement()"
+      >
+        Add more requirement
+      </button>
+    </ng-container>
+    }
+  </div>
   <!-- End Form Group (nested) -->
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        formControlName="checkUser"
+        id="gridCheck"
+      />
       <label class="form-check-label" for="gridCheck">
-        Check me out
+        I agree terms and content
       </label>
     </div>
   </div>
   <div class="col-12">
     <button class="btn btn-success" type="submit">Submit</button>
   </div>
-
 </form>
-
 
 <div>
   <h5>Settings</h5>

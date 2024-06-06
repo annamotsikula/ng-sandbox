@@ -5,3 +5,7 @@
 .invalid-field {
     margin-left: .5rem;
 }
+.column {
+    display: flex;
+    flex-direction: column;
+}
