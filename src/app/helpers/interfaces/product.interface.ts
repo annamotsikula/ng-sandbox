@@ -11,3 +11,8 @@ export interface Product {
     thumbnail: string ,
     images?: string[]
 }
+
+export interface ProductImage {
+    src: string,
+    selected: boolean
+}

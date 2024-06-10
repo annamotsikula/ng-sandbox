@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'auth',
     pathMatch: 'full'
+  },
+  {
+    path: 'auth',
+    component: SignInComponent
   },
   {
     path: 'main',

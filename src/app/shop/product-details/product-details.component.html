@@ -5,10 +5,13 @@
                 <div class="wrapper row">
                     <div class="preview col-md-6"> 
                         <div class="preview-pic tab-content">
-                          <div *ngFor="let img of product.images; let i=index" class="tab-pane" id="pic-2"><img [src]="img"/></div>
+                          <div *ngFor="let img of images; let i=index" class="tab-pane" [ngClass]="{'active' : img.selected}">
+                                <img [src]="img.src"/>
+                            
+                        </div>
                         </div>
                         <ul class="preview-thumbnail nav nav-tabs">
-                          <li class="active" *ngFor="let img of product.images; let i=index"><a><img [src]="img" /></a></li>
+                          <li class="active" *ngFor="let img of images; let i=index" (click)="setThumbnail(img)" (mouseover)="onhover(img)"><a><img [src]="img.src" /></a></li>
                         </ul>       
                     </div>
                     <div class="details col-md-6">

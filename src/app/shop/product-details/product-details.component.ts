@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, } from '@angular/router';
 import { ProductService } from '../../helpers/services/product.service';
-import { Product } from '../../helpers/interfaces/product.interface';
+import { Product, ProductImage } from '../../helpers/interfaces/product.interface';
 
 @Component({
   selector: 'app-product-details',
@@ -13,12 +13,36 @@ export class ProductDetailsComponent {
   productService = inject(ProductService);
   product: Product | undefined;
 
+  images: ProductImage[] = []
+
   ngOnInit() {
     const routeParam: string = this.route.snapshot.params['id'];
     this.product = this.productService.getProductById(Number(routeParam));
-    console.log(this.product)
-    
-    // const routeParamId = this._routeSnapshnot.params['id']
+    if (this.product?.images) {
+      this.images = this.product?.images.map((i, index) => {
+        if (index === 0) {
+          return { src: i, selected: true }
+        } else {
+          return { src: i, selected: false }
+        }
+      });
+    }
 
+
+  }
+
+  setThumbnail(image: ProductImage) {
+    console.log(image)
+    // if(this.initialImage === image.src) {
+    //   return
+    // }
+    this.images.forEach(i => i.selected = false);
+    image.selected = true
+
+
+  }
+
+  onhover(img: ProductImage) {
+    this.setThumbnail(img)
   }
 }
