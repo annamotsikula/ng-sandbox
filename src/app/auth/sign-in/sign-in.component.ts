@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Auth } from '../../helpers/interfaces/auth.interface';
 import { Router } from '@angular/router';
+import { BASE_URL } from '../../helpers/contstants/contstants';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,11 +14,13 @@ export class SignInComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   authForm = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [Validators.required]),
+    email: new FormControl("test@test.com", [Validators.required, Validators.email]),
+    password: new FormControl("asdf", [Validators.required]),
     rememberUser: new FormControl(false)
-  })
+  });
+  constructor() {
 
+  }
 
   onSignIn() {
     if (this.authForm.valid) {

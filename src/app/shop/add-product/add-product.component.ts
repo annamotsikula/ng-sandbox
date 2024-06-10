@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../helpers/services/product.service';
 
 @Component({
@@ -14,12 +14,17 @@ export class AddProductComponent {
     description: ""
   }
 
-  constructor(private _service: ProductService) {
+  @Output() emitAdd = new EventEmitter()
+
+  constructor() {
 
   }
   addProduct() {
-    this._service.addProduct(this.newProduct);
-    alert('Product has added')
+    this.emitAdd.emit(this.newProduct)
+    // this._service.addProduct(this.newProduct).subscribe((res) => {
+    //   console.log(res)
+    //   alert('Product has added')
+    // });
 
   }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Product } from '../../helpers/interfaces/product.interface';
 import { ProductService } from '../../helpers/services/product.service';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -9,10 +10,16 @@ import { ProductService } from '../../helpers/services/product.service';
 })
 export class ProductDashboardComponent {
   productList: Product[] = [];
-  openForm: boolean = false
+  openForm: boolean = false;
+
+  disableClick = false;
+
   constructor(public _productService: ProductService) {
-    this.productList = this._productService.getProducts()
-    
+    this._productService.getProducts().subscribe(result => {
+      console.log(result)
+      this.productList = result
+    })
+
   }
   delete(id: number) {
     setTimeout(() => {
@@ -20,6 +27,19 @@ export class ProductDashboardComponent {
       alert(`Product (id: ${id}) has deleted`)
 
     }, 1000)
-   
   }
+
+  addProduct(newProduct: any) {
+    if (this.disableClick) return
+    this.disableClick = true
+    this._productService.addProduct(newProduct).pipe(
+      finalize(() => this.disableClick = false)
+    ).subscribe(() => {
+      console.log('Product Added')
+      // this.disableClick = false
+    });
+
+ }
+
+
 }

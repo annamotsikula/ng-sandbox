@@ -16,3 +16,9 @@ export interface ProductImage {
     src: string,
     selected: boolean
 }
+export interface InitialProductList {
+    limit: number,
+    products: Product[],
+    skip: number,
+    total: number
+}

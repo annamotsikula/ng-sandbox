@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-routing.module';
 import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BASE_URL } from './helpers/contstants/contstants';
 
 
 
@@ -20,6 +22,11 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule
+  ],
+
+  providers: [
+    { provide: BASE_URL, useValue: 'https://dummyjson.com' }
   ],
 
   bootstrap: [AppComponent]

@@ -14,29 +14,35 @@ import { ProductComponent } from "../shop/product/product.component";
 import { RatingStarsComponent } from "../shop/rating-stars/rating-stars.component";
 import { ProductDetailsComponent } from '../shop/product-details/product-details.component';
 import { SurveyComponent } from '../survey/survey.component';
+import { BASE_URL } from "../helpers/contstants/contstants";
 const pipes = [
-    TruncatePipe
-  ];
-  
-  const directives = [
-    HighlighterDirective,
-    ProductCategoryDirective
-  ];
+  TruncatePipe
+];
+
+const directives = [
+  HighlighterDirective,
+  ProductCategoryDirective
+];
 @NgModule({
-    declarations: [
-        HomeComponent,
-        HeaderComponent,
-        FooterComponent,
-        ProductDashboardComponent,
-        ProductComponent,
-        AddProductComponent,
-        RatingStarsComponent,
-        ...pipes,
-        ...directives,
-        ProductDetailsComponent,
-        SurveyComponent
-    ],
-    imports: [CommonModule, FormsModule, HomePageRouterModule, ReactiveFormsModule],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    ProductDashboardComponent,
+    ProductComponent,
+    AddProductComponent,
+    RatingStarsComponent,
+    ...pipes,
+    ...directives,
+    ProductDetailsComponent,
+    SurveyComponent
+  ],
+  imports: [CommonModule, FormsModule, HomePageRouterModule, ReactiveFormsModule],
+  // providers:
+  //   [
+  //     { provide: BASE_URL, useValue: 'https://dummyjson.com' }
+
+  //   ]
 })
 export class HomePageModule {
 

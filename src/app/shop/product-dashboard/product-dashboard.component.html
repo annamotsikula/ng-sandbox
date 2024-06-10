@@ -2,11 +2,11 @@
 <div class="mb-3">
     <button class="btn btn-warning" (click)="openForm = !openForm">{{openForm ? 'Close' : '+ Add Item'}}</button>
     @if(openForm) {
-        <app-add-product />
+        <app-add-product (emitAdd)="addProduct($event)" />
     }
 </div>
 <div class="d-flex justify-content-between flex-wrap products">
-    @for (prod of productList; track prod.id) {
+    <!-- @for (prod of productList; track prod.id) {
       <app-product [product]="prod" class="product" (btnClick)="delete(prod.id)" />
-    }
+    } -->
 </div>
