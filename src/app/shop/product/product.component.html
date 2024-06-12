@@ -1,20 +1,64 @@
-
 @if(product) {
-    <div class="card" style="width: 18rem;">
-        <div class="stock" *ngIf="product.stock < 50">{{'Few items left'}}</div>
-        <img [src]="product.thumbnail" class="card-img-top" [alt]="'product_'+product.id">
-        <div class="card-body">
-            <h5>{{product.title}}</h5>
-            <app-rating-stars [rating]="product.rating" />
-            <div class="d-flex justify-content-between">
-                <span class="price">{{product.price | currency}}</span>
-                <div class="category" [appProductCategory]="product.category"></div>
-            </div>
-          <p class="card-text">{{product.description | truncate: 8}}</p>
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-danger" (click)="btnClick.emit()">Delete</button>
-            <a [routerLink]="['/main', 'product', product.id]">View Details</a>
-        </div>
+<!-- <div class="card" style="width: 18rem">
+  <div class="stock" *ngIf="product.stock < 50">{{ "Few items left" }}</div>
+  <img
+    [src]="product.thumbnail"
+    class="card-img-top"
+    [alt]="'product_' + product.id"
+  />
+  <div class="card-body">
+    <h5>{{ product.title }}</h5>
+    <app-rating-stars [rating]="product.rating" />
+    <div class="d-flex justify-content-between">
+      <span class="price">{{ product.price | currency }}</span>
+      <div class="category" [appProductCategory]="product.category"></div>
     </div>
+    <p class="card-text">{{ product.description | truncate : 8 }}</p>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-danger" (click)="btnClick.emit()">Delete</button>
+    <a [routerLink]="['/main', 'product', product.id]">View Details</a>
+  </div>
+</div> -->
+<div class="card">
+  <div class="image-container">
+    <div class="first">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="discount">-{{product.discountPercentage / 100 | percent}}</span>
+        <span class="wishlist"><i class="bi bi-heart"></i></span>
+      </div>
+    </div>
+
+    <img
+    [src]="product.thumbnail"
+    [alt]="'product_' + product.id"
+      class="img-fluid rounded thumbnail-image"
+    />
+  </div>
+
+  <div class="product-detail-container p-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="product-name"><a>{{product.title | truncate: 3}}</a></h5>
+
+      <div class="d-flex flex-column mb-2">
+        <span class="new-price">{{(product.price - (product.price * product.discountPercentage / 100)) | currency}}</span>
+        <small class="old-price text-right">{{product.price | currency}}</small>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center pt-1">
+        <!-- <div class="category" [appProductCategory]="product.category"></div> -->
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center pt-1">
+      <div>
+        <app-rating-stars class="rating-star" [rating]="product.rating"></app-rating-stars>
+        <span class="rating-number">{{product.rating}}</span>
+      </div>
+
+      <button class="btn buy">BUY +</button>
+    </div>
+  </div>
+</div>
+
 }

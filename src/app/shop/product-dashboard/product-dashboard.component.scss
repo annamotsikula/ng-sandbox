@@ -1,10 +1,10 @@
-.product {
-    &:last-of-type {
-        flex:auto;
-        margin-left: 3rem;
-    }
+.container {
+    width: 990px;
 }
 
-.products {
-    flex-flow: row wrap;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
 }
