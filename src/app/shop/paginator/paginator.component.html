@@ -1,0 +1,24 @@
+<nav aria-label="Page navigation example" *ngIf="totalPages.length > 1">
+  <ul class="pagination" *ngIf="(service.currentPage$ | async) as currPage">
+    <li class="page-item" >
+      <a class="page-link" aria-label="Previous" [ngClass]="{'disabled': currPage === 1}" (click)="setStep('dec')">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    @for (page of totalPages; track $index) {
+    <li
+      class="page-item"
+      [ngClass]="{ active: currPage === $index + 1 }"
+      (click)="setCurrPage($index+1)"
+    >
+      <a class="page-link">{{ $index + 1 }}</a>
+    </li>
+    }
+
+    <li class="page-item" (click)="setStep('inc')" [ngClass]="{'disabled': currPage === totalPages.length}">
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -17,22 +17,16 @@ export class ProductDetailsComponent {
   images: ProductImage[] = []
 
   ngOnInit() {
-    const routeParam: string = this.route.snapshot.params['id'];
-    this.productService.getProductById(Number(routeParam)).pipe(
-      tap(result => {
-        if (result.images) {
-          this.images = result.images.map((i, index) => {
-            if (index === 0) {
-              return { src: i, selected: true }
-            } else {
-              return { src: i, selected: false }
-            }
-          });
-        }
-      })
-    ).subscribe(res => {
-      this.product = res
-    })
+    this.product = this.route.snapshot.data['singleProduct'];
+    if(this.product) {
+      this.images = this.product.images.map((i, index) => {
+                if (index === 0) {
+                  return { src: i, selected: true }
+                } else {
+                  return { src: i, selected: false }
+                }
+              });
+    }
   }
 
   setThumbnail(image: ProductImage) {

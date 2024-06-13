@@ -6,6 +6,12 @@
   <app-add-product (emitAdd)="addProduct($event)" />
   }
 </div>
+<div class="mt-5 mb-5">
+  <app-paginator />
+</div>
+<div class="mt-5 mb-5">
+  <input type="text" class="form-control" #search placeholder="Search products..." [formControl]="searchInput">
+</div>
 <div class="container mt-5">
   <div class="grid">
     @for (prod of productList; track prod.id) {

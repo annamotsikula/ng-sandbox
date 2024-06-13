@@ -6,8 +6,9 @@ import { HomeComponent } from "./home.component";
 import { ProductDashboardComponent } from "../shop/product-dashboard/product-dashboard.component";
 import { ProductDetailsComponent } from "../shop/product-details/product-details.component";
 import { SurveyComponent } from "../survey/survey.component";
+import { productDetailResolver } from "../helpers/resolvers/product-details.resolver";
 
-const routes : Routes = [  
+const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
@@ -18,7 +19,8 @@ const routes : Routes = [
             },
             {
                 path: 'product/:id',
-                component: ProductDetailsComponent
+                component: ProductDetailsComponent,
+                resolve: { singleProduct: productDetailResolver }
             },
             {
                 path: 'about',
@@ -30,7 +32,7 @@ const routes : Routes = [
             }
         ]
     },
-    
+
 ]
 
 @NgModule({
@@ -38,5 +40,5 @@ const routes : Routes = [
     exports: [RouterModule]
 })
 export class HomePageRouterModule {
-    
+
 }

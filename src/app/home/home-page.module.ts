@@ -15,6 +15,7 @@ import { RatingStarsComponent } from "../shop/rating-stars/rating-stars.componen
 import { ProductDetailsComponent } from '../shop/product-details/product-details.component';
 import { SurveyComponent } from '../survey/survey.component';
 import { BASE_URL } from "../helpers/contstants/contstants";
+import { PaginatorComponent } from '../shop/paginator/paginator.component';
 const pipes = [
   TruncatePipe
 ];
@@ -35,7 +36,8 @@ const directives = [
     ...pipes,
     ...directives,
     ProductDetailsComponent,
-    SurveyComponent
+    SurveyComponent,
+    PaginatorComponent
   ],
   imports: [CommonModule, FormsModule, HomePageRouterModule, ReactiveFormsModule],
   // providers:

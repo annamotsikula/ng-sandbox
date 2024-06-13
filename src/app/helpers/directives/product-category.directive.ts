@@ -11,12 +11,12 @@ export class ProductCategoryDirective implements OnInit {
 
   ngOnInit(): void {
     const className = this._generateClassName();
-    this._generateIcon(className);
+    if(className) this._generateIcon(className);
     
   }
 
-  private _generateClassName(): string {
-    let className = ""
+  private _generateClassName(): string | null {
+    let className = null
     switch(this.category.toLowerCase()) {
       case CategoryEnum.GROCERY:
         className = 'bi-shop';
@@ -28,6 +28,7 @@ export class ProductCategoryDirective implements OnInit {
         className = 'bi-phone-fill';
         break;
       default: 
+      // className = null
       break;
     }
 
