@@ -1,23 +1,30 @@
+
 <div class="container">
-    <form [formGroup]="authForm" class="w-25 m-auto" (submit)="onSignIn()">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" formControlName="email" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+  <form [formGroup]="authForm" (submit)="onSignIn()">
+    <div class="screen-1">
+      <div class="email">
+        <label for="email">Email Address</label>
+        <div class="sec-2">
+          <i class="bi bi-envelope"></i>
+          <input type="email" name="email" id="email" formControlName="email" placeholder="Username@gmail.com">
         </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+      </div>
+      
+      <div class="password">
+        <label for="password">Password</label>
+        <div class="sec-2">
+          <i class="bi bi-lock"></i>
+          <input type="password" name="password" id="password" formControlName="password" placeholder="············" class="pas">
+          <!-- <ion-icon name="eye-outline" class="show-hide"></ion-icon> -->
         </div>
-    
-        <div class="form-check text-start my-3">
-          <input class="form-check-input" type="checkbox" value="remember-me" formControlName="rememberUser" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Remember me
-          </label>
-        </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
-      </form>
+      </div>
+      
+      <button class="login" type="submit">Login</button>
+      
+      <div class="footer">
+        <span>Sign up</span>
+        <span>Forgot Password?</span>
+      </div>
+    </div>
+  </form>
 </div>

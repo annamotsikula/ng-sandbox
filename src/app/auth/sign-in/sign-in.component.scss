@@ -1,0 +1,105 @@
+$bg-color: hsl(213deg 85% 97%);
+.container {
+    background-color: $bg-color
+}
+@mixin screen {
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 30px;
+}
+@mixin icon {
+    color: hsl(0deg 0% 30%);
+    margin-bottom: -.2em;
+}
+.container, .screen-1, form {
+    height: 100%;
+}
+.screen-1 {
+    @include screen;
+    width: 50%;
+    margin: auto;
+    gap: 2em;
+
+    .email {
+        background: hsl(0deg 0% 100%);
+        box-shadow: 0 0 2em hsl(231deg 62% 94%);
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        border-radius: 20px;
+        color: hsl(0deg 0% 30%);
+
+        input {
+            outline: none;
+            border: none;
+
+            &::placeholder {
+                color: hsl(0, 0%, 47%);
+                font-size: 0.9em;
+            }
+        }
+        i {
+          @include icon;
+        }
+    }
+
+    .password {
+        background: hsl(0deg 0% 100%);
+        box-shadow: 0 0 2em hsl(231deg 62% 94%);
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        border-radius: 20px;
+        color: hsl(0deg 0% 30%);
+
+        input {
+            outline: none;
+            border: none;
+
+            &::placeholder {
+                color: hsl(0, 0%, 38%);
+                font-size: 0.9em;
+            }
+        }
+        i {
+            @include icon;
+          }
+
+        .show-hide {
+            margin-right: -5em;
+        }
+    }
+
+    .login {
+        padding: 1em;
+        background: hsl(233deg 36% 38%);
+        color: hsl(0deg 0% 100%);
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+    }
+
+    .footer {
+        display: flex;
+        margin: 0 auto;
+        width: 70%;
+        height: fit-content;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.7em;
+        color: hsl(0deg 0% 37%);
+        gap: 14em;
+
+        span {
+            cursor: pointer
+        }
+    }
+}
+
+button {
+    cursor: pointer;
+}

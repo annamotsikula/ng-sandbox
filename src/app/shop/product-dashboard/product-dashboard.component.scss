@@ -8,3 +8,23 @@
     grid-gap: 20px;
     align-items: stretch;
 }
+.input-search {
+    margin: auto;
+    width: 70%;
+    position: relative;
+    &:focus-within {
+        border: 2px solid rgb(47, 0, 255);
+    }
+    i {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+    }
+    input {
+        margin-left: 24px;
+        border: none;
+        outline: none;
+        
+    }
+
+}

@@ -6,11 +6,14 @@
   <app-add-product (emitAdd)="addProduct($event)" />
   }
 </div>
-<div class="mt-5 mb-5">
-  <app-paginator />
-</div>
-<div class="mt-5 mb-5">
-  <input type="text" class="form-control" #search placeholder="Search products..." [formControl]="searchInput">
+<div class="input-search mt-5 mb-5 form-control">
+  <i class="bi bi-search"></i>
+  <input
+  type="text"
+  #search
+  placeholder="Search products..."
+  [formControl]="searchInput"
+  />
 </div>
 <div class="container mt-5">
   <div class="grid">
@@ -18,4 +21,7 @@
     <app-product [product]="prod" (btnClick)="delete(prod.id)" />
     }
   </div>
+</div>
+<div class="mt-5 mb-5 d-flex justify-content-center">
+  <app-paginator />
 </div>
