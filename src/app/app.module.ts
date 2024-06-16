@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.c
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BASE_URL } from './helpers/contstants/contstants';
+import { CartComponent } from './shop/cart/cart.component';
 
 
 
@@ -16,6 +17,7 @@ import { BASE_URL } from './helpers/contstants/contstants';
     AppComponent,
     PageNotFoundComponent,
     SignInComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
