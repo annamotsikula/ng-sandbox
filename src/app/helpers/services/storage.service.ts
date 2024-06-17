@@ -15,9 +15,17 @@ export class StorageService {
         this._storage.setItem(key, strVal)
 
     }
+    deleteItem(key: string) {
+        if(!this.itemExist(key)) return;
+        this._storage.removeItem(key)
+    }
 
     itemExist(key: string): boolean {
         return !!this.getItem(key)
+    }
+
+    removeItems(keys: string[]) {
+        keys.forEach(key => this.deleteItem(key));
     }
 
 

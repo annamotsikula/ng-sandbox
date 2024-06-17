@@ -6,9 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-routing.module';
 import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BASE_URL } from './helpers/contstants/contstants';
 import { CartComponent } from './shop/cart/cart.component';
+import { RequestInterceptor } from './helpers/services/auth.interceptor';
 
 
 
@@ -28,7 +29,8 @@ import { CartComponent } from './shop/cart/cart.component';
   ],
 
   providers: [
-    { provide: BASE_URL, useValue: 'https://dummyjson.com' }
+    { provide: BASE_URL, useValue: 'https://dummyjson.com' },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true}
   ],
 
   bootstrap: [AppComponent]
