@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild, inject } from '@angular/core';
 import { Product } from '../../helpers/interfaces/product.interface';
 import { ProductService } from '../../helpers/services/product.service';
 import { debounceTime, filter, finalize, fromEvent, map, switchMap, tap } from 'rxjs';
 import { PaginationService } from '../../helpers/services/pagination.service';
 import { FormControl } from '@angular/forms';
+import { NotificationService } from '../../helpers/services/notification.service';
+import { CartService } from '../../helpers/services/cart.service';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -16,17 +18,15 @@ export class ProductDashboardComponent implements AfterViewInit {
 
   disableClick = false;
   searchInput = new FormControl("")
-  @ViewChild('search') search! : ElementRef<HTMLInputElement>
-  constructor(public _productService: ProductService, private _paginatorService: PaginationService) {
-
-    // this.searchInput.valueChanges.pipe(
-    //   debounceTime(1000),
-    //   filter(key => typeof key === 'string' && key.length > 2),
-    //   switchMap(key => this._productService.searchProduct(key as string))
-    // ).subscribe(result => this.productList = result)
-
+  @ViewChild('search') search!: ElementRef<HTMLInputElement>
+  constructor(
+    public _productService: ProductService,
+    private _paginatorService: PaginationService,
+    private _notification: NotificationService,
+    private _cartService: CartService
+  ) {
     this._paginatorService.currentPage$.pipe(
-      switchMap((page) => this._productService.getProducts(30, 30*(page-1 )))
+      switchMap((page) => this._productService.getProducts(30, 30 * (page - 1)))
     ).subscribe((result) => {
       this.productList = result
     })
@@ -41,12 +41,10 @@ export class ProductDashboardComponent implements AfterViewInit {
       switchMap(key => this._productService.searchProduct(key as string))
     ).subscribe(result => this.productList = result)
   }
-  delete(id: number) {
-    setTimeout(() => {
-      this._productService.deleteItemById(id);
-      alert(`Product (id: ${id}) has deleted`)
-
-    }, 1000)
+  buy(id: number) {
+    this._cartService.amount.update((val) => val + 1);
+    this._cartService.productIds.update(ids => [...ids, id])
+    console.log(this._cartService.productIds())
   }
 
   addProduct(newProduct: any) {
@@ -55,11 +53,11 @@ export class ProductDashboardComponent implements AfterViewInit {
     this._productService.addProduct(newProduct).pipe(
       finalize(() => this.disableClick = false)
     ).subscribe(() => {
-      console.log('Product Added')
+      this._notification.success('Product Added')
       // this.disableClick = false
     });
 
- }
+  }
 
 
 }

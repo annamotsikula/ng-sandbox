@@ -1,40 +1,53 @@
+Cart Products:{{ service.productIds() | json }}
 <div class="shopping-cart">
-      <!-- Title -->
-      <div class="title">
-        Shopping Bag
-      </div>
+  <!-- Title -->
+  <div class="title">Shopping Bag</div>
 
-      <!-- Product #1 -->
-      <div class="item">
-        <div class="buttons">
-          <span class="delete-btn">
-            <i class="bi bi-x-lg"></i>
-          </span>
-          <span class="like-btn">
-            <i class="bi bi-suit-heart"></i>
-          </span>
-        </div>
+  <!-- Product #1 -->
+   @for (product of (products$ | async); track product.id) {
+     <div class="item" >
+       <div class="buttons">
+         <span class="delete-btn">
+           <i class="bi bi-x-lg"></i>
+         </span>
+         <span class="like-btn">
+           <i class="bi bi-suit-heart"></i>
+         </span>
+       </div>
+   
+       <div class="image">
+         <img
+           src="https://designmodo.static.domains/shopping-cart/item-1.png"
+           alt=""
+         />
+       </div>
+   
+       <div class="description">
+         <span>{{product.title}}</span>
+         <span>White</span>
+       </div>
+   
+       <div class="quantity">
+         <button class="plus-btn" type="button" name="button" (click)="generateAmount(1, product)">
+           <i class="bi bi-plus"></i>
+         </button>
+         <span>{{product.amount}}</span>
+         <button class="minus-btn" type="button" name="button" (click)="generateAmount(0, product)">
+           <i class="bi bi-dash"></i>
+         </button>
+       </div>
+   
+       <div class="total-price">{{product.price}}</div>
+     </div>
+     
+   } @empty {
+    <div class="item">
+      No products available
 
-        <div class="image">
-          <img src="https://designmodo.static.domains/shopping-cart/item-1.png" alt="" />
-        </div>
-
-        <div class="description">
-          <span>Common Projects</span>
-          <span>Bball High</span>
-          <span>White</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <i class="bi bi-plus"></i>
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <i class="bi bi-dash"></i>
-          </button>
-        </div>
-
-        <div class="total-price">$549</div>
-      </div>
     </div>
+   }
+</div>
+
+<div class="checkout">
+Final Price {{ service.checkoutProducts() }}
+</div>

@@ -4,12 +4,14 @@ import { Observable, catchError, filter, of, switchMap, take, tap, throwError } 
 import { StorageService } from "./storage.service";
 import { AUTH_TOKEN } from "../contstants/contstants";
 import { AuthService } from "../../auth/auth.service";
+import { NotificationService } from "./notification.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class RequestInterceptor implements HttpInterceptor {
     private _localStorage = inject(StorageService);
+    private _notification= inject(NotificationService)  ;
     private _auth = inject(AuthService);
 
 
@@ -26,8 +28,9 @@ export class RequestInterceptor implements HttpInterceptor {
             catchError((err: HttpErrorResponse) => {
                 if(err.status === 401) {
                         return this.handleUnAuth();
-
                 }
+                this._notification.fail(err.error.message, { displayCloseBtn: false})
+              
                 
 
                 return throwError(() => err)

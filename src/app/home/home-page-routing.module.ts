@@ -7,6 +7,7 @@ import { ProductDashboardComponent } from "../shop/product-dashboard/product-das
 import { ProductDetailsComponent } from "../shop/product-details/product-details.component";
 import { SurveyComponent } from "../survey/survey.component";
 import { productDetailResolver } from "../helpers/resolvers/product-details.resolver";
+import { CartComponent } from "../shop/cart/cart.component";
 
 const routes: Routes = [
     {
@@ -21,6 +22,11 @@ const routes: Routes = [
                 path: 'product/:id',
                 component: ProductDetailsComponent,
                 resolve: { singleProduct: productDetailResolver }
+            },
+            {
+                path: 'cart',
+                component: CartComponent
+                // loadComponent: () => import('../shop/cart/cart.component').then(c => c.CartComponent)
             },
             {
                 path: 'about',

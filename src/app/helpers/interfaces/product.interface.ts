@@ -21,6 +21,7 @@ export interface Product {
     title: string;
     warrantyInformation: string;
     weight: number;
+    amount: number
 }
 interface Dimensions {
     width: number;

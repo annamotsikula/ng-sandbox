@@ -26,7 +26,7 @@ export class ProductService {
   getProducts(limit = 30, skip = 0 ): Observable<Product[]> {
     return this._http.get<InitialProductList>(`${this._baseUrl}/products?limit=${limit}&skip=${skip}`).pipe(
       tap(result => this._setPagination(result.total, limit)),
-      map(response => response.products)
+      map(response => response.products.map(prods => ({...prods, amount: 1})))
     )
   }
 
@@ -40,9 +40,7 @@ export class ProductService {
 
   }
   getProductById(id: number): Observable<Product> {
-    return this._http.get<Product>(`${this._baseUrl}/products/${id}`).pipe(
-      delay(2000)
-    )
+    return this._http.get<Product>(`${this._baseUrl}/products/${id}`)
   }
   searchProduct(searchKey: string) {
     return this._http.get<InitialProductList>(`${this._baseUrl}/products/search?q=${searchKey}`).pipe(

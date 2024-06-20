@@ -8,9 +8,10 @@ import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.c
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BASE_URL } from './helpers/contstants/contstants';
-import { CartComponent } from './shop/cart/cart.component';
 import { RequestInterceptor } from './helpers/services/auth.interceptor';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material.module';
+import { SharedComponentsModule } from './shared/components/shared-components.module';
 
 
 @NgModule({
@@ -18,10 +19,12 @@ import { RequestInterceptor } from './helpers/services/auth.interceptor';
     AppComponent,
     PageNotFoundComponent,
     SignInComponent,
-    CartComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    SharedComponentsModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

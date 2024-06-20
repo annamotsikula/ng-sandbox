@@ -16,6 +16,8 @@ import { ProductDetailsComponent } from '../shop/product-details/product-details
 import { SurveyComponent } from '../survey/survey.component';
 import { BASE_URL } from "../helpers/contstants/contstants";
 import { PaginatorComponent } from '../shop/paginator/paginator.component';
+import { BadgeComponent } from "../shared/components/badge.component";
+import { CartComponent } from "../shop/cart/cart.component";
 const pipes = [
   TruncatePipe
 ];
@@ -39,12 +41,7 @@ const directives = [
     SurveyComponent,
     PaginatorComponent
   ],
-  imports: [CommonModule, FormsModule, HomePageRouterModule, ReactiveFormsModule],
-  // providers:
-  //   [
-  //     { provide: BASE_URL, useValue: 'https://dummyjson.com' }
-
-  //   ]
+  imports: [CommonModule, FormsModule, HomePageRouterModule, ReactiveFormsModule, BadgeComponent, CartComponent],
 })
 export class HomePageModule {
 

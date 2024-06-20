@@ -18,7 +18,7 @@
 <div class="container mt-5">
   <div class="grid">
     @for (prod of productList; track prod.id) {
-    <app-product [product]="prod" (btnClick)="delete(prod.id)" />
+    <app-product [product]="prod" (btnClick)="buy(prod.id)" />
     }
   </div>
 </div>
